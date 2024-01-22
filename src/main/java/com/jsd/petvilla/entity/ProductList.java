@@ -21,13 +21,13 @@ public class ProductList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
 	
-	@Column(length = 20, nullable = false)
+	@Column(length = 30, nullable = false)
 	private String productCategory;
 	
-	@Column(length = 20, nullable = false)
+	@Column(length = 200, nullable = false)
 	private String name;
 	
-	@Column(length = 200, nullable = false)
+	@Column(length = 500, nullable = false)
 	private String description;
 	
 	@Column(length = 5, nullable = false)

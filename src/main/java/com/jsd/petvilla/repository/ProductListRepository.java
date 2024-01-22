@@ -17,5 +17,5 @@ public interface ProductListRepository extends JpaRepository<ProductList, Intege
 	 * Returns list of of products from same category
 	 */
 	@Query("Select productList from ProductList productList where productList.productCategory = ?1")
-	List<ProductList> fetchByCategory(String productCategory);
+	List<ProductList> findByCategory(String productCategory);
 }

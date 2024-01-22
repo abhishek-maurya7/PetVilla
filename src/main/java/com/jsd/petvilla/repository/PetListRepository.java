@@ -19,12 +19,12 @@ public interface PetListRepository extends JpaRepository<PetList, Integer>{
 	 * Returns multiple Pets in a list
 	 */
 	@Query("Select petList from PetList petList where petList.category = ?1")
-	List<PetList> fetchByCategory(String category);
+	List<PetList> findPetListByCategory(String category);
 	
 	/*
 	 * Method to fetch Pets based on breed
 	 * Returns multiple Pets in a list
 	 */
 	@Query("Select petList from PetList petList where petList.breed = ?1")
-	List<PetList> fetchByBreed(String breed);
+	List<PetList> findPetListByBreed(String breed);
 }

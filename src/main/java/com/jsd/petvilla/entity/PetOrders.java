@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +23,13 @@ public class PetOrders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int petOrderId;
 	
-	@Column(length = 20, nullable = false)
-	private int customerId;
+	@ManyToOne
+	@JoinColumn(name = "customerId", referencedColumnName = "cId")
+	Customer customer;
 	
-	@Column(length = 20, nullable = false)
-	private int petId;
+	@OneToOne
+	@JoinColumn(name = "petId", referencedColumnName = "petId")
+	private PetList pet;
 	
 	@Column(length = 20, nullable = false)
 	private String orderDate;
