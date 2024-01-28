@@ -17,4 +17,18 @@ public interface ProductListService {
 	 * @return A List of ProductList having required category
 	 */
 	List<ProductList> displayProductsByCategory(String productCategory);
+	
+	/*
+	 * Fetch product by their name
+	 * @param name Name of the product
+	 * @return product information
+	 */
+	List<ProductList> displayProductsByName(String name);
+	
+	/*
+	 * Fetch a specific product by ID
+	 * @Param productId unique ID of the product
+	 * @return information of specific product
+	 */
+	ProductList displayProductById(int productId);
 }

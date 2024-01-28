@@ -9,5 +9,5 @@ import com.jsd.petvilla.entity.PetOrders;
  * Inherits methods of JpaRepository
  */
 public interface PetOrdersRepository extends JpaRepository<PetOrders, Integer> {
-
+	
 }

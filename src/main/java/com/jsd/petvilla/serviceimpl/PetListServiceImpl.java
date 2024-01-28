@@ -1,12 +1,13 @@
 package com.jsd.petvilla.serviceimpl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jsd.petvilla.entity.PetList;
+import com.jsd.petvilla.exception.PetBreedNotFoundException;
+import com.jsd.petvilla.exception.PetCategoryNotFoundException;
 import com.jsd.petvilla.exception.PetIDNotFoundException;
 import com.jsd.petvilla.repository.PetListRepository;
 import com.jsd.petvilla.service.PetListService;
@@ -33,28 +34,42 @@ public class PetListServiceImpl implements PetListService{
 
 	/*
 	 * Method to fetch pets based on category
-	 * @Param cateory 
+	 * @param category 
 	 * Using .findPetListByCategory() method of PetListRepository
-	 * Returns a List
+	 * @return a List of pets having same category
 	 */
 	@Override
 	public List<PetList> displayPetsByCategory(String category) {
-		// TODO Auto-generated method stub
+		List<PetList> petList = plRepo.findPetListByCategory(category);
+		if(petList.isEmpty()) {
+			throw new PetCategoryNotFoundException("Pets of " + category + " not found.");
+		}
 		return plRepo.findPetListByCategory(category);
 	}
 	
 	/*
 	 * Method to fetch pets based on breed
-	 * @Param breed 
+	 * @param breed 
 	 * Using .findPetListByBreed() method of PetListRepository
-	 * Returns a List
+	 * @throws PetBreedNotFoundException 
+	 * @returns a List pets having same breed
 	 */
 	@Override
 	public List<PetList> displayPetsByBreed(String breed) {
-		return plRepo.findPetListByBreed(breed);
+		List<PetList> petList = plRepo.findPetListByBreed(breed);
+		if(petList.isEmpty()) {
+			throw new PetBreedNotFoundException("Pets of " + breed + " not found.");
+		}
+		return petList;
 	}
 
 
+	/*
+	 * Fetch single pet by ID
+	 * Using .findById() from JpaRepository
+ 	 * @param petId Pet ID of each pet
+	 * @return information of the pet
+	 */
 	@Override
 	public PetList displayPetById(int petId) {
 		return plRepo.findById(petId).orElseThrow(() -> new PetIDNotFoundException("Pet does not exist."));

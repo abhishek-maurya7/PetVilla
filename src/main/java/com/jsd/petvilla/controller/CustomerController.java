@@ -22,24 +22,25 @@ public class CustomerController {
 	@Autowired
 	CustomerService cs;
 	
-	/*
-	 * Mapping ro handle
-	 */
+	//Endpoint to add new customers
 	@PostMapping("/register")
 	public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody Customer customer) {
 		return new ResponseEntity<Customer>(cs.registerCustomer(customer), HttpStatus.CREATED);
 	}
 	
+	//endpoint to fetch customer information by ID
 	@GetMapping("/customer/{cId}")
 	public ResponseEntity<Customer> findCustomer(@PathVariable("cId") int cId) {
 		return new ResponseEntity<Customer>(cs.fetchCustomer(cId), HttpStatus.OK);
 	}
 	
+	//endpoint to edit customer information by ID
 	@PatchMapping("editCustomer/{cId}")
 	public ResponseEntity<Customer> editCustomer(@RequestBody Customer customer ,@PathVariable("cId") int cId) {
 		return new ResponseEntity<Customer>(cs.editCustomer(customer, cId), HttpStatus.OK);
 	}
 	
+	//endpoint to delete customer by ID
 	@DeleteMapping("/deleteCustomer/{cId}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable("cId") int cId) {
 		cs.deleteCustomer(cId);

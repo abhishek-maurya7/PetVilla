@@ -17,8 +17,8 @@ public interface ProductOrdersRepository extends JpaRepository<ProductOrders, In
 	 * Custom method to fetch Product Orders based on customer ID
 	 * Returns list of orders
 	 */
-	@Query("Select productOrders from ProductOrders productOrders where productOrders.customerId = ?1")
-	List<ProductOrders> findByCustomerId(int cId); 
+//	@Query("Select productOrders from ProductOrders productOrders where productOrders.customerId = ?1")
+//	List<ProductOrders> findByCustomerId(int cId); 
 	
 	/*
 	 * Custom method to fetch Product Orders based on status

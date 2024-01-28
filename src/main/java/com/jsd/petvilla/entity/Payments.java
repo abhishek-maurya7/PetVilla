@@ -5,10 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -21,21 +27,25 @@ public class Payments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paymentId;
 
-    @Column(length = 20, nullable = false)
-    private int customerId;
+    @ManyToOne
+    @JoinColumn(name = "customerId", referencedColumnName = "cId")
+    @JsonIgnore
+    private Customer pCustomer;
     
-    @Column(length = 20, nullable = false)
-    private int petOrderId;
-    
-    @Column(length = 20, nullable = false)
-    private int productOrderId;
-    
-    @Column(length = 20, nullable = false)
-    private String paymentDate;
-    
-    @Column(length = 20, nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "petOrderId", nullable = true)
+    private PetOrders petOrder;
+
+    @ManyToOne
+    @JoinColumn(name = "productOrderId", nullable = true)
+    private ProductOrders productOrder;
+
+    @Column(nullable = false)
+    private LocalDateTime paymentDate;
+
+    @Column(nullable = false)
     private int amount;
-    
+
     @Column(length = 20, nullable = false)
     private String paymentMethod;
 }
