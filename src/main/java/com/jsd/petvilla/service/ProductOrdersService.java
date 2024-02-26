@@ -1,5 +1,7 @@
 package com.jsd.petvilla.service;
 
+import java.util.List;
+
 import com.jsd.petvilla.entity.ProductOrders;
 
 /*
@@ -11,7 +13,7 @@ public interface ProductOrdersService {
      * Create a new product order.
      * @return The created ProductOrders object.
      */
-    ProductOrders createProductOrder(ProductOrders newProductOrders);
+    List<ProductOrders> createProductOrder(List<ProductOrders> newProductOrders);
 
     /**
      * Fetch a product order by its unique identifier (ID).

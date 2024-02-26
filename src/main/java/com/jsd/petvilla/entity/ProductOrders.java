@@ -1,5 +1,7 @@
 package com.jsd.petvilla.entity;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
@@ -26,29 +28,22 @@ public class ProductOrders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productOrderId;
 	
-//	@Column(length = 20, nullable = false)
-//	private int customerId;
-	
-//	@Column(length = 20, nullable = false)
-//	private int productId;
-	
-	@OneToOne
+
+	@ManyToOne
 	@JoinColumn(name="productId", referencedColumnName = "productId")
 	private ProductList product;
 	
 	@Column(length = 20, nullable = false)
-	private String orderDate;
+	private LocalDateTime orderDate = LocalDateTime.now();
+	
+	@Column(length = 3, nullable = false)
+	private int quantity;
 	
 	@Column(length = 20, nullable = false)
 	private String status;
 	
-//	@ManyToOne
-//    @JoinColumn(name = "customerId", referencedColumnName = "cId")
-//    @JsonBackReference // To prevent infinite loop during serialization
-//    private Customer customerOfProducts;
-	
     @ManyToOne
-    @JoinColumn(name = "customerId")  // Adjust the column name as needed
-    @JsonBackReference // To prevent infinite loop during serialization
+    @JoinColumn(name = "customerId")
+    @JsonBackReference 
     private Customer customerOfProducts;
 }

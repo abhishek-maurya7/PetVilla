@@ -74,4 +74,16 @@ public class PetListServiceImpl implements PetListService{
 	public PetList displayPetById(int petId) {
 		return plRepo.findById(petId).orElseThrow(() -> new PetIDNotFoundException("Pet does not exist."));
 	}
+
+	@Override
+	public PetList addPet(PetList pet) {
+		return plRepo.save(pet);
+	}
+
+	@Override
+	public void deletePet(int petId) {
+	    PetList pet = plRepo.findById(petId).orElseThrow(() -> new PetIDNotFoundException("Pet does not exist."));
+	    plRepo.delete(pet);
+	}
+
 }

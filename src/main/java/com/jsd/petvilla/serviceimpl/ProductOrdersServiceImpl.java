@@ -1,10 +1,15 @@
 package com.jsd.petvilla.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jsd.petvilla.entity.Customer;
 import com.jsd.petvilla.entity.ProductOrders;
+import com.jsd.petvilla.exception.CustomerIDNotFoundException;
 import com.jsd.petvilla.exception.ProductOrderIDNotFoundException;
+import com.jsd.petvilla.repository.CustomerRepository;
 import com.jsd.petvilla.repository.ProductOrdersRepository;
 import com.jsd.petvilla.service.ProductOrdersService;
 
@@ -18,6 +23,8 @@ public class ProductOrdersServiceImpl implements ProductOrdersService {
 	@Autowired
 	ProductOrdersRepository productOrdersRepo;
 	
+	@Autowired
+	CustomerRepository customerRepository;
 	/*
 	 * fetch information of specific product order by ID
 	 * @return ProductOrders object corresponding to the ID
@@ -32,8 +39,8 @@ public class ProductOrdersServiceImpl implements ProductOrdersService {
 	 * @return saved ProductOrders object
 	 */
 	@Override
-	public ProductOrders createProductOrder(ProductOrders newProductOrders) {
-		return productOrdersRepo.save(newProductOrders);
+	public List<ProductOrders> createProductOrder(List<ProductOrders> newProductOrders) {
+		return productOrdersRepo.saveAll(newProductOrders);
 	}
 
 	/*
@@ -46,5 +53,4 @@ public class ProductOrdersServiceImpl implements ProductOrdersService {
 		updatedProductOrder.setStatus(productOrder.getStatus());
 		return productOrdersRepo.save(updatedProductOrder);
 	}
-	
 }

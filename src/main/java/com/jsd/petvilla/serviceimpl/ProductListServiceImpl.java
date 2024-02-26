@@ -64,4 +64,15 @@ public class ProductListServiceImpl implements ProductListService {
 		}
 		return productList;
 	}
+
+    @Override
+    public void deleteProduct(int productId) {
+        productRepo.findById(productId).orElseThrow(() -> new ProductNameNotFoundException("Product was not found."));
+        productRepo.deleteById(productId);
+    }
+
+	@Override
+	public ProductList addNewProduct(ProductList newProduct) {
+		return productRepo.save(newProduct);
+	}
 }

@@ -14,7 +14,21 @@ public class LoginServiceImpl implements LoginService {
 	LoginRepository loginRepo;
 	
 	@Override
-	public Login loginCustomer(String username, String password) {
+	public Login loginUser(String username, String password, String token) {
+		Login credentials = loginRepo.findByUsernameAndPassword(username, password);
+		credentials.setToken(token);
+		loginRepo.save(credentials);
 		return loginRepo.findByUsernameAndPassword(username, password);
+	}
+
+	@Override
+	public String registerUser(Login credientials) {
+		 loginRepo.save(credientials);
+		 return "User has been created. You can login now.";
+	}
+
+	@Override
+	public boolean isUsernameAvailable(String username) {
+		return !loginRepo.existsByUsername(username);
 	}
 }

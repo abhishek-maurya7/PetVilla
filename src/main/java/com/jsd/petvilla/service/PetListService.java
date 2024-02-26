@@ -30,4 +30,8 @@ public interface PetListService {
 	 * Returns pets of specific breed in a List
 	 */
 	List<PetList> displayPetsByBreed(String breed);
+	
+	PetList addPet(PetList pet);
+	
+	void deletePet(int petId);
 }

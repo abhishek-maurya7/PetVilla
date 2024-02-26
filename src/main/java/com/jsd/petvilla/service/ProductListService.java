@@ -31,4 +31,9 @@ public interface ProductListService {
 	 * @return information of specific product
 	 */
 	ProductList displayProductById(int productId);
+	
+	void deleteProduct(int productId);
+	
+	ProductList addNewProduct(ProductList newProduct);
+	
 }

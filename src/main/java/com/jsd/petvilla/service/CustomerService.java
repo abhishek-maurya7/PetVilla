@@ -11,13 +11,11 @@ public interface CustomerService {
 	 */
 	Customer registerCustomer(Customer customer);
 	
-	
 	/*
 	 * Edit existing customer details by ID
 	 * Returns customer after editing it
 	 */
 	Customer editCustomer(Customer customer, int cId);
-	
 	
 	/*
 	 * Delete existing customer by ID 
@@ -29,4 +27,10 @@ public interface CustomerService {
 	 * Return the fetched customer 
 	 */
 	Customer fetchCustomer(int cId);
+	
+	/**
+	 * @param username
+	 * @return Customer object
+	 */
+	Customer fetchByUsername(String username);
 }

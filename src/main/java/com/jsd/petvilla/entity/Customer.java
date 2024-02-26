@@ -30,6 +30,9 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cId;
 
+    @Column(length=15, unique=true, nullable=false)
+    private String username;
+    
     @Column(length = 20, nullable = false)
     private String cName;
 

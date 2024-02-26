@@ -60,4 +60,13 @@ public class CustomerServiceImpl implements CustomerService {
 		return custRepo.findById(cId).orElseThrow(()-> new CustomerIDNotFoundException("Customer ID does not exists."));
 	}
 
+	/**
+	 * method to fetch user by username
+	 * using fetchByUsername() of JpaRepository
+	 */
+	@Override
+	public Customer fetchByUsername(String username) {
+		return custRepo.fetchByUsername(username);
+	}
+
 }
